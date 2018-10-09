@@ -1,18 +1,18 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Environment
+**/.env
+
 # compiled output
 /server/public
 
 # dependencies
 /client/node_modules
 /server/node_modules
-/client/package-lock.json
 
 # server
 /server/server_env/**
-/server/routes
-/server/models/database.db
-/server/package-lock.json
+/server/models/**.db
 
 # IDEs and editors
 /.idea
