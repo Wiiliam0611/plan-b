@@ -6,10 +6,13 @@
 # dependencies
 /client/node_modules
 /server/node_modules
+/client/package-lock.json
 
-# incomplete components
+# server
 /server/server_env/**
 /server/routes
+/server/models/database.db
+/server/package-lock.json
 
 # IDEs and editors
 /.idea
