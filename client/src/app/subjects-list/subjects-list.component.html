@@ -1,0 +1,44 @@
+
+<form id="search-bar" class="ap-search">
+  <input type="text"
+         class="form-control"
+         placeholder="Search subject"
+         [(ngModel)]="searchText"
+         [ngModelOptions]="{standalone: true}" >
+</form>
+
+<div class="ap-hint"
+     *ngIf="subjectCount > 3">
+  <small>
+    <strong>Hint:</strong>
+    The number of subjects you enrolled should be thoughtful.
+  </small>
+</div>
+
+<div id="subject-list" class="ap-links list-group-flush list-group">
+  <a class="list-group-item list-group-item-action flex-column align-items-start"
+     [routerLink]="['/description', item.id]"
+     *ngFor="let item of subjects | search: searchText">
+
+    <div class="row">
+      <div class="col">
+        <h6 class="mb-1">{{item.id}} {{item.title}}</h6>
+        <small class="badge badge-pill badge-info">
+          Credit Points: {{item.credit}}
+        </small>
+      </div>
+
+      <button
+        type="button"
+        class="ap-btn btn btn-light col-2"
+        *ngIf="isLoggedIn"
+        (click)="enroll($event, item.id)">
+        <span class="fa fa-plus"></span>
+      </button>
+    </div>
+
+  </a>
+</div>
+
+
+

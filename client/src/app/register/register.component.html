@@ -1,0 +1,75 @@
+<div class="card mx-auto m-5" style="width: 320px">
+  <h5 class="card-header">SIGN UP</h5>
+  <div class="card-body">
+    <form [formGroup]="formModel"
+          *ngIf="submitted"
+          (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="studentId" class="sr-only">Student ID</label>
+        <input type="text"
+               id="studentId"
+               class="form-control"
+               name="studentId"
+               placeholder="Student ID"
+               formControlName="studentId" (keyup)="onChange()">
+        <small class="form-text text-danger"
+              [hidden]="
+              !formModel.hasError('pattern', ['studentId']) ||
+              !(formModel.get('studentId').touched && formModel.get('studentId').dirty)">
+          Your ID should have 8 digits.
+        </small>
+        <small class="form-text text-danger"
+               [hidden]="
+              !formModel.hasError('exist', ['studentId']) ||
+              !(formModel.get('studentId').touched && formModel.get('studentId').dirty)">
+          Your ID has already used.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <input type="email"
+               id="email"
+               class="form-control"
+               name="email"
+               placeholder="Student email"
+               formControlName="email">
+      </div>
+
+      <div formGroupName="passwordsGroup">
+        <div class="form-group">
+          <label for="password" class="sr-only">Password</label>
+          <input type="password"
+                 id="password"
+                 class="form-control"
+                 name="password"
+                 placeholder="Password"
+                 formControlName="password">
+          <small class="form-text text-danger"
+                 [hidden]="
+             !formModel.hasError('minlength', ['passwordsGroup', 'password']) ||
+             !(formModel.get('passwordsGroup.password').dirty && formModel.get('passwordsGroup.password').touched)">
+            The password should contain 8 characters.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="confirmPW" class="sr-only">Confirm Password</label>
+          <input type="password"
+                 id="confirmPW"
+                 class="form-control"
+                 name="confirmPW"
+                 placeholder="Confirm password"
+                 formControlName="confirmPW">
+          <small class="form-text text-danger"
+                 [hidden]="
+             !formModel.hasError('equal', ['passwordsGroup']) ||
+             !(formModel.get('passwordsGroup.confirmPW').dirty && formModel.get('passwordsGroup.confirmPW').touched)">
+            The password you entered is not identical.
+          </small>
+        </div>
+      </div>
+
+      <input type="submit" class="btn btn-primary btn-block" value="Sign Up">
+    </form>
+  </div>
+</div>
