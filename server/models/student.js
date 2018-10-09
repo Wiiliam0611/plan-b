@@ -13,7 +13,7 @@ const Students = sequelize.define('student', {
     email: {
         type: Sequelize.STRING,
         allowNull:false,
-        unique: true
+        // unique: true
     },
     firstName: {
         type: Sequelize.STRING
