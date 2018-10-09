@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ROUTES
 app.get('/api/users', checkIfAuthenticated, register.users);
 app.get('/api/subjects/:studentId', subjects.subjects);
+app.get('/api/subject/:subjectId', subjects.subject);
 app.get('/api/subject-count/:studentId', subjects.selectSubjectCount);
 app.get('/api/sections/:subjectId', subjects.sections);
 app.get('/api/timetable/:studentId', subjects.timetable);

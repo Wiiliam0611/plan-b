@@ -24,6 +24,10 @@ export class TimetableService {
     return this.http.get<Subject[]>(`/api/subjects/${studentId}`);
   }
 
+  public getSubject(subjectId: number) : Observable<Subject> {
+    return this.http.get<Subject>(`/api/subject/${subjectId}`)
+  }
+
   public getSubjectCount(studentId: number) : Observable<{[key:string]: number}> {
     return this.http.get<{[key:string]: number}>(`/api/subject-count/${studentId}`);
   }

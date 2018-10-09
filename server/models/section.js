@@ -38,6 +38,9 @@ const Section = sequelize.define('section', {
     },
     weeks: {
         type: Sequelize.STRING
+    },
+    info: {
+        type: Sequelize.TEXT
     }
 }, {
     timestamps: false

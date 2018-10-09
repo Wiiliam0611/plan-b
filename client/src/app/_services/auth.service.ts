@@ -38,7 +38,9 @@ export class AuthService {
   }
 
   public isLoggedOut() {
-    return !AuthService.getExpiration();
+    const expiration = localStorage.getItem("expires_at");
+    const expiresAt = JSON.parse(expiration);
+    return !moment(expiresAt).isValid();
   }
 
   private static getExpiration() {

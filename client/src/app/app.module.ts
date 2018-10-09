@@ -56,7 +56,8 @@ import { TimeSortPipe } from './_pipes/time-sort.pipe';
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
-    }],
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
