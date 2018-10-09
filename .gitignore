@@ -8,7 +8,7 @@
 /server/node_modules
 
 # incomplete components
-/server/server_env
+/server/server_env/**
 /server/routes
 
 # IDEs and editors
