@@ -17,7 +17,7 @@ const routes: Routes = [
 
   {path: 'login', component: LoginComponent, canActivate: [LogoutGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [LogoutGuard]},
-  {path: '**', redirectTo: '', pathMatch: 'full'}
+  {path: '**', redirectTo: 'timetable', pathMatch: 'full'}
 ];
 
 export const routing = RouterModule.forRoot(routes, {onSameUrlNavigation: "reload"});
