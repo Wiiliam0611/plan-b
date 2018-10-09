@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 export class RegisterComponent implements OnInit {
 
   submitted: boolean;
+  clicked: boolean;
   formModel: FormGroup;
 
   constructor(
@@ -21,25 +22,32 @@ export class RegisterComponent implements OnInit {
     private router:Router) {
 
     this.submitted = false;
+    this.clicked = false;
 
     this.formModel = fb.group({
-      'studentId': ['',
-        Validators.pattern('[0-9]{8}'),
+      'studentId': ['', Validators.compose([
+        Validators.required,
+        Validators.pattern('[0-9]{8}')]),
         validator.asyncStudentIdValidator(this.registration)
       ],
-      'email': ['',
-        Validators.pattern('^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$')
+      'email': ['', Validators.compose([
+        Validators.required,
+        Validators.pattern('^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$')])
       ],
       'passwordsGroup': fb.group({
-        'password': ['',
-          Validators.minLength(8)
+        'password': ['', Validators.compose([
+          Validators.required,
+          Validators.minLength(8)])
         ],
-        'confirmPW': ['']
+        'confirmPW': ['',
+          Validators.required,]
       }, {validator: validator.passwordEqualValidation})
     });
   }
 
   onSubmit() {
+    this.clicked = true;
+
     if (this.formModel.valid) {
       this.registration.register({
         id:       this.formModel.get('studentId').value,

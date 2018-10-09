@@ -23,6 +23,7 @@ import { CloseBtnComponent } from './close-btn/close-btn.component';
 import { SectionFilterPipe } from './_pipes/section-filter.pipe';
 import { DayFilterPipe } from './_pipes/day-filter.pipe';
 import { TimeSortPipe } from './_pipes/time-sort.pipe';
+import {AutofocusModule} from "angular-autofocus-fix";
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { TimeSortPipe } from './_pipes/time-sort.pipe';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AutofocusModule,
     routing
   ],
   providers: [

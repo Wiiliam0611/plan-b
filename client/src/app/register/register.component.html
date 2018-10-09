@@ -21,7 +21,9 @@
                class="form-control"
                name="studentId"
                placeholder="Student ID"
-               formControlName="studentId" (keyup)="onChange()">
+               formControlName="studentId"
+               autofocus>
+               <!--(keyup)="onChange()"-->
         <small class="form-text text-danger"
               [hidden]="
               !formModel.hasError('pattern', ['studentId']) ||
@@ -34,6 +36,13 @@
               !(formModel.get('studentId').touched && formModel.get('studentId').dirty)">
           Your ID has already used.
         </small>
+        <small class="form-text text-danger"
+               [hidden]="
+             !formModel.hasError('required', ['studentId']) ||
+             !(formModel.get('studentId').dirty && formModel.get('studentId').touched) &&
+             !clicked">
+          This field is required.
+        </small>
       </div>
 
       <div class="form-group">
@@ -43,6 +52,19 @@
                name="email"
                placeholder="Student email"
                formControlName="email">
+        <small class="form-text text-danger"
+               [hidden]="
+              !formModel.hasError('pattern', ['email']) ||
+              !(formModel.get('email').touched && formModel.get('email').dirty)">
+          The email address you entered is invalid.
+        </small>
+        <small class="form-text text-danger"
+               [hidden]="
+             !formModel.hasError('required', ['email']) ||
+             !(formModel.get('email').dirty && formModel.get('email').touched) &&
+             !clicked">
+          This field is required.
+        </small>
       </div>
 
       <div formGroupName="passwordsGroup">
@@ -60,6 +82,13 @@
              !(formModel.get('passwordsGroup.password').dirty && formModel.get('passwordsGroup.password').touched)">
             The password should contain 8 characters.
           </small>
+          <small class="form-text text-danger"
+                 [hidden]="
+             !formModel.hasError('required', ['passwordsGroup', 'password']) ||
+             !(formModel.get('passwordsGroup.password').dirty && formModel.get('passwordsGroup.password').touched) &&
+             !clicked">
+            This field is required.
+          </small>
         </div>
         <div class="form-group">
           <label for="confirmPW" class="sr-only">Confirm Password</label>
@@ -74,6 +103,13 @@
              !formModel.hasError('equal', ['passwordsGroup']) ||
              !(formModel.get('passwordsGroup.confirmPW').dirty && formModel.get('passwordsGroup.confirmPW').touched)">
             The password you entered is not identical.
+          </small>
+          <small class="form-text text-danger"
+                 [hidden]="
+             !formModel.hasError('required', ['passwordsGroup', 'confirmPW']) ||
+             !(formModel.get('passwordsGroup.confirmPW').dirty && formModel.get('passwordsGroup.confirmPW').touched) &&
+             !clicked">
+            This field is required.
           </small>
         </div>
       </div>
