@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   private static setSession(authResult) {
-    const expiresAt = moment().add(authResult.expiresIn, 'second');
+    const expiresAt = moment().add(authResult.expiresIn, 'minutes');
 
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem("student_id", authResult.studentId);

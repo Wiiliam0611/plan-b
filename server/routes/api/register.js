@@ -36,7 +36,7 @@ exports.register = (req, res) => {
         id: student.id
     }, EMAIL_SECRET, {
         algorithm: "HS256",
-        expiresIn: "1d"
+        expiresIn: "300"
     }, (err, emailToken) => {
         const url = `http://${HOST_AND_PORT}/api/confirmation/${emailToken}`;
 
@@ -94,7 +94,7 @@ exports.login = (req, res) => {
 
                 const jwtBearerToken = jwt.sign({}, RSA_PRIVATE_KEY, {
                     algorithm: "RS256",
-                    expiresIn: 3600,
+                    expiresIn: "300",
                     subject: studentId
                 });
 
