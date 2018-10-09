@@ -8,8 +8,7 @@ const Students = require('../../models/student');
 
 const RSA_PRIVATE_KEY = fs.readFileSync(path.join(__dirname, '../../server_env/private.key'));
 const EMAIL_SECRET = process.env.EMAIL_SECRET;
-const HOST = 'localhost';
-const PORT = 4200;
+const HOST_AND_PORT = process.env.DEVELOPMENT ? 'localhost:4200' : process.env.HOST;
 
 exports.users = (req, res) => {
     Students.findAll().then(users => {
@@ -39,7 +38,7 @@ exports.register = (req, res) => {
         algorithm: "HS256",
         expiresIn: "1d"
     }, (err, emailToken) => {
-        const url = `http://${HOST}:${PORT}/api/confirmation/${emailToken}`;
+        const url = `http://${HOST_AND_PORT}/api/confirmation/${emailToken}`;
 
         // Use Gmail account
         const transporter = nodemailer.createTransport({

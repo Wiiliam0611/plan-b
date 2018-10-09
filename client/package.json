@@ -7,7 +7,7 @@
     "serve": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "serve-api": "node ../server/bin/www",
-    "serve-api-dev": "cd ../server && npm start",
+    "serve-api-dev": "cd ../server && npm run dev-start",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

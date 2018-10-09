@@ -12,7 +12,7 @@
 
 # server
 /server/server_env/**
-/server/models/**.db
+/server/models/database.db
 
 # IDEs and editors
 /.idea
