@@ -41,22 +41,30 @@ exports.selectSubjectCount = (req, res) => {
     });
 };
 
-exports.timetable = (req, res) => {
+exports.timetable = async (req, res) => {
     const studentId = req.params.studentId;
     let timetableItems = [];
-    Timetable.findAll({where: {studentId: studentId}})
-        .then((items) => {
-            items.map(it => {
-                Section.findOne({where: {id: it.sectionId}})
-                    .then((sec) => {
-                        timetableItems.push(sec);
-                    });
-            });
-        });
 
-    setTimeout(() => {
-        res.status(200).json(timetableItems);
-    }, 300)
+    let items = await Timetable.findAll({where: {studentId: studentId}});
+    for (let it of items) {
+        let sec = await Section.findOne({where: {id: it.sectionId}});
+        timetableItems.push(sec);
+    }
+    res.status(200).json(timetableItems);
+
+    // Timetable.findAll({where: {studentId: studentId}})
+    //     .then((items) => {
+    //         items.map(it => {
+    //             Section.findOne({where: {id: it.sectionId}})
+    //                 .then((sec) => {
+    //                     timetableItems.push(sec);
+    //                 });
+    //         });
+    //     });
+    //
+    // setTimeout(() => {
+    //     res.status(200).json(timetableItems);
+    // }, 300)
 };
 
 exports.sections = (req, res) => {

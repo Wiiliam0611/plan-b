@@ -24,4 +24,12 @@ const Timetable = sequelize.define('timetable', {
 
 Section.belongsToMany(Student, {through: Timetable});
 
+Timetable.hasMany(Section, {foreignKey: 'id'});
+
+Timetable.findAll(
+    {where: {studentId: 12790794}, include: [{model: Section}]}
+).then((timetable) => {
+    console.log(timetable.sections);
+});
+
 module.exports = Timetable;
